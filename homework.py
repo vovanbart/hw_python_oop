@@ -29,7 +29,6 @@ class Calculator:
     def get_today_remains(self):
         remains = self.limit - self.get_today_stats()
         return remains
-
 class Record:
     def __init__(self, amount, comment, date=None):
         self.amount = amount
@@ -38,7 +37,6 @@ class Record:
             self.date = dt.date.today()
         else:
             self.date = dt.datetime.strptime(date, '%d.%m.%Y').date()
-
 class CashCalculator(Calculator):
     USD_RATE = 70.0
     EURO_RATE = 77.0
@@ -61,7 +59,6 @@ class CashCalculator(Calculator):
             message = (f'Денег нет, держись: твой долг - {cash_remained} '
                        f'{name}')
         return message
-
 class CaloriesCalculator(Calculator):
     def get_calories_remained(self):
         calories_remained = self.get_today_remains()
