@@ -1,30 +1,30 @@
 import datetime as dt
 
 
+dmy = '%d.%m.%Y'
+
+
 class Calculator:
 
     def __init__(self, limit):
         self.limit = limit
         self.records = []
-        self.today = dt.date.today()
-        self.week_ago = self.today - dt.timedelta(days=7)
 
     def add_record(self, record):
         self.records.append(record)
 
     def get_today_stats(self):
-        today_stats = []
-        for record in self.records:
-            if record.date == self.today:
-                today_stats.append(record.amount)
-        return sum(today_stats)
+        today = dt.date.today()
+        today_stats = sum(record.amount for record in self.records
+                          if record.date == today)
+        return today_stats
 
     def get_week_stats(self):
-        week_stats = []
-        for record in self.records:
-            if self.week_ago <= record.date <= self.today:
-                week_stats.append(record.amount)
-        return sum(week_stats)
+        today = dt.date.today()
+        week_ago = today - dt.timedelta(days=7)
+        week_stats = sum(record.amount for record in self.records
+                         if week_ago <= record.date <= today)
+        return week_stats
 
     def get_today_remains(self):
         remains = self.limit - self.get_today_stats()
@@ -38,7 +38,7 @@ class Record:
         if date is None:
             self.date = dt.date.today()
         else:
-            self.date = dt.datetime.strptime(date, '%d.%m.%Y').date()
+            self.date = dt.datetime.strptime(date, dmy).date()
 
 
 class CashCalculator(Calculator):
