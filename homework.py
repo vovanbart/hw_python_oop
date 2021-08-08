@@ -1,7 +1,7 @@
 import datetime as dt
 
 
-dmy = '%d.%m.%Y'
+DMY = '%d.%m.%Y'
 
 
 class Calculator:
@@ -38,7 +38,7 @@ class Record:
         if date is None:
             self.date = dt.date.today()
         else:
-            self.date = dt.datetime.strptime(date, dmy).date()
+            self.date = dt.datetime.strptime(date, DMY).date()
 
 
 class CashCalculator(Calculator):
