@@ -42,10 +42,10 @@ class Record:
 
 
 class CashCalculator(Calculator):
-    USD_RATE = 70.0
-    EURO_RATE = 77.0
+    USD_RATE = 73.0
+    EURO_RATE = 86.0
     RUB_RATE = 1
-    
+
     def get_today_cash_remained(self, currency='rub'):
         currencies = {'usd': ('USD', CashCalculator.USD_RATE),
                       'eur': ('Euro', CashCalculator.EURO_RATE),
